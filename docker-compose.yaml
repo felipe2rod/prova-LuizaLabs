@@ -11,6 +11,8 @@ services:
       - app-network
     volumes:
       - .:/usr/share/nginx
+    command: sh -c "/usr/local/bin/dockerrun.sh"
+
   mysql-app:
     image: mysql:latest
     ports:
