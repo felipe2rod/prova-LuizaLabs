@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  luizalabs-app: 
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    ports:
+      - "8090:80"
+    networks:
+      - app-network
+    volumes:
+      - .:/usr/share/nginx
+  mysql-app:
+    image: mysql:latest
+    ports:
+      - "3308:3306"
+    environment:
+      MYSQL_DATABASE: luizalabs
+      MYSQL_ROOT_PASSWORD: luizalabs
+    volumes:
+      - .docker/dbdata:/var/lib/mysql
+    networks:
+      - app-network
+      
+networks:
+  app-network:
+    driver: bridge
