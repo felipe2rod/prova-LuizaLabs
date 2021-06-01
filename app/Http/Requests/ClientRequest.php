@@ -36,7 +36,7 @@ class ClientRequest extends BaseAPIFormRequest
     {
         return [
             'name.required' => "O campo nome é obrigatório",
-            'name.max' => "O campo nome deve ter no maximo 50 caracteres",
+            'name.max' => "O campo nome deve ter no maximo 45 caracteres",
             'name.string' => "O campo nome deve ser uma string",
 
             'cpf.required' => "O campo cpf é obrigatório",
