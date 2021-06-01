@@ -52,4 +52,15 @@ class ClientController extends BaseAPIController
         }
     }
 
+    public function delete( $id )
+    {
+         try{
+            $Client = Client::findOrFail($id);
+            $Client->delete();
+            return $this->sendResponse('Successfully deleted');
+        }catch(ModelNotFoundException $e){
+            return $this->sendError("delete error", ['meta' => $e->getMessage()]);
+
+        }
+    }
 }
