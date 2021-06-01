@@ -15,4 +15,15 @@ class ClientController extends BaseAPIController
         return $this->sendResponse(ClientResource::collection($Clients));
     }
 
+    public function create(ClientRequest $request)
+    {
+        try{
+            Client::create($request->all());
+            return $this->sendResponse("Sucefully created");
+        }catch(Exception $e){
+            return $this->sendError("create error", ['meta' => $e->getMessage()], Response::HTTP_ERROR);
+        }
+        
+    }
+
 }

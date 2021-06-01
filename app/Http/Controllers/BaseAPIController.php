@@ -1,32 +1,22 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as Controller;
+use App\Http\Response\ApiResponse as ApiResponse;
 
 class BaseAPIController extends Controller 
 {
-	public function sendResponse($result)
-	{
-		$response = [
-            'success' => true,
-            'data'    => $result
-        ];
+    private $ApiResponse = null;
 
-        return response()->json($response, 200);
-	}
+    public function __construct(){
+        $this->ApiResponse = new ApiResponse();
+    }
 
-	public function sendError($error, $errorMessages = [], $code = 404)
-	{
-		$response = [
-            'success' => false,
-            'message' => $error,
-        ];
+	public function sendResponse($result){
+        return $this->ApiResponse->sendResponse($result);
+    }
 
-        if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
-        }
-
-        return response()->json($response, $code);
-	}
+    public function sendError($error, $errorMessages = [], $code = Response::HTTP_NOT_FOUND){
+        return $this->ApiResponse->sendError($error, $errorMessages, $code);
+    }
 }

@@ -9,10 +9,10 @@ Class ApiResponse{
             'success' => true,
             'data'    => $result
         ];
-        return response()->json($response, 200);
+        return response()->json($response, Response::HTTP_CREATED);
 	}
 
-	public function sendError($error, $errorMessages = [], $code = 404)
+	public function sendError($error, $errorMessages = [], $code = Response::HTTP_NOT_FOUND)
 	{
 		$response = [
             'success' => false,
