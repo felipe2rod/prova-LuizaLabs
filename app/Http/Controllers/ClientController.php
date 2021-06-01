@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use App\Models\Client;
 use App\Http\Requests\ClientRequest;
 use App\Http\Controllers\BaseAPIController as BaseAPIController;
 use App\Http\Resources\Client as ClientResource;
+
+
 
 class ClientController extends BaseAPIController
 {
@@ -24,6 +28,16 @@ class ClientController extends BaseAPIController
             return $this->sendError("create error", ['meta' => $e->getMessage()], Response::HTTP_ERROR);
         }
         
+    }
+
+    public function show( $id ){
+        try{
+            $Client = Client::findOrFail($id);
+            return $this->sendResponse(new ClientResource($Client));
+        }catch(ModelNotFoundException $e){
+            return $this->sendError("get error", ['meta' => $e->getMessage()]);
+
+        }
     }
 
 }
