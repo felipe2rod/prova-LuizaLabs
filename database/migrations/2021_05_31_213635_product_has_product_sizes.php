@@ -15,12 +15,13 @@ class ProductHasProductSizes extends Migration
     {
         Schema::create('product_has_product_sizes', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-            $table->tinyIncrements('id');
+            $table->tinyInteger('product_id');
             $table->tinyInteger('product_size_id');
         });
 
         Schema::table('product_has_product_sizes', function (Blueprint $table) {
 
+            $table->foreign('product_id')->references('id')->on('product');
             $table->foreign('product_size_id')->references('id')->on('product_sizes');
 
         });

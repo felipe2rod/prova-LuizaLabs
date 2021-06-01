@@ -15,12 +15,13 @@ class ProductHasProductColors extends Migration
     {
         Schema::create('product_has_product_colors', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-            $table->tinyIncrements('id');
+            $table->tinyInteger('product_id');
             $table->tinyInteger('product_color_id');
         });
 
         Schema::table('product_has_product_colors', function (Blueprint $table) {
 
+            $table->foreign('product_id')->references('id')->on('product');
             $table->foreign('product_color_id')->references('id')->on('product_colors');
 
         });
