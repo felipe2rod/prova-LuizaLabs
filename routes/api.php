@@ -18,4 +18,6 @@ use App\Http\Controllers\ClientController;
 */
 
 Route::get('clients', [ClientController::class, 'index']);
+Route::get('clients/{id}', [ClientController::class, 'show']);
 Route::post('clients', [ClientController::class, 'create']);
+Route::put('clients/{id}', [ClientController::class, 'update']);

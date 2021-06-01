@@ -24,11 +24,13 @@ class ClientRequest extends BaseAPIFormRequest
      */
     public function rules()
     {
+        $UniqueOnlyCreate = ($this->id ? ','.$this->id : '');
+        $RequiredOnlyCreate = ($this->id ? '' : 'required|');
         return [
-            'name' => 'required|string|max:45',
-            'cpf' => 'required|string|max:14|min:14|unique:clients,cpf'.($this->id ? ','.$this->id : ''),
-            'email' => 'required|string|max:45|unique:clients,email'.($this->id ? ','.$this->id : ''),
-            'sex'=> 'required|in:male,female',
+            'name' => "{$RequiredOnlyCreate}string|max:45",
+            'cpf' => "{$RequiredOnlyCreate}string|max:14|min:14|unique:clients,cpf{$UniqueOnlyCreate}",
+            'email' => "{$RequiredOnlyCreate}string|max:45|unique:clients,email{$UniqueOnlyCreate}",
+            'sex'=> "{$RequiredOnlyCreate}in:male,female"
         ];
     }
 

@@ -30,13 +30,25 @@ class ClientController extends BaseAPIController
         
     }
 
-    public function show( $id ){
+    public function show( $id )
+    {
         try{
             $Client = Client::findOrFail($id);
             return $this->sendResponse(new ClientResource($Client));
         }catch(ModelNotFoundException $e){
             return $this->sendError("get error", ['meta' => $e->getMessage()]);
 
+        }
+    }
+
+    public function update(ClientRequest $request)
+    {
+        try{
+            $id = $request->route('id');
+            Client::find($id)->update($request->validated());
+            return $this->sendResponse("Successfully updated");
+        }catch(Exception $e){
+            return $this->sendError("update error", ['meta' => $e->getMessage()], Response::HTTP_ERROR);
         }
     }
 
