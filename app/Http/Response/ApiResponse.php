@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Response;
 
+use Illuminate\Http\JsonResponse;
+
 Class ApiResponse{
 
 	public function sendResponse($result)
@@ -9,10 +11,10 @@ Class ApiResponse{
             'success' => true,
             'data'    => $result
         ];
-        return response()->json($response, Response::HTTP_CREATED);
+        return response()->json($response, JsonResponse::HTTP_CREATED);
 	}
 
-	public function sendError($error, $errorMessages = [], $code = Response::HTTP_NOT_FOUND)
+	public function sendError($error, $errorMessages = [], $code = JsonResponse::HTTP_NOT_FOUND)
 	{
 		$response = [
             'success' => false,
