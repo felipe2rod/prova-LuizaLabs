@@ -12,7 +12,7 @@ class ClientTest extends TestCase
 {
     use RefreshDatabase;
     
-    public function test_get()
+    public function test_get_all_clients()
     {
         $Client = Client::factory()->create();
 
@@ -352,6 +352,40 @@ class ClientTest extends TestCase
                     'sex' => ['O sexo informado é invalido']
                 ]
         ]);
+    }
+
+    public function test_show_client(){
+
+        $Client = Client::factory()->create();
+
+        $response = $this->get("/api/clients/{$Client->id}");
+
+        $response
+            ->assertStatus(JsonResponse::HTTP_CREATED)
+            ->assertJson([
+                'success' => true,
+                'data' => [
+                        'id' => $Client->id,
+                        'name' => $Client->name,
+                        'cpf' => $Client->cpf,
+                        'email' => $Client->email,
+                        'sex' => $Client->sex == 'male' ? 'Masculino': 'Feminino'
+                    ]
+            ]);
+    }
+
+    public function test_invalid_show_client(){
+        $response = $this->get("/api/clients/000");
+
+        $response
+            ->assertStatus(JsonResponse::HTTP_NOT_FOUND)
+            ->assertJson([
+                'success' => false,
+                'message' => 'get error',
+                'data' => [
+                    'meta' => 'No query results for model [App\\Models\\Client] 000'
+                ]
+            ]);
     }
 
 }
