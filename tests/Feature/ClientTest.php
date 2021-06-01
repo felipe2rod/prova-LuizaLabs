@@ -624,4 +624,32 @@ class ClientTest extends TestCase
         ]);
     }
 
+    public function test_delete_sucess()
+    {
+        $Client = Client::factory()->create();
+
+        $response = $this->delete("/api/clients/{$Client->id}");
+        $response
+            ->assertStatus(JsonResponse::HTTP_CREATED)
+            ->assertJson([
+                'success' => true,
+                'data' => 'Successfully deleted'
+        ]);
+    }
+
+    public function test_delete_error()
+    {
+
+        $response = $this->delete('/api/clients/000');
+        $response
+            ->assertStatus(JsonResponse::HTTP_NOT_FOUND)
+            ->assertJson([
+                'success' => false,
+                "message"=> "delete error",
+                'data' => [
+                    "meta"=> "No query results for model [App\\Models\\Client] 000"
+                ]
+        ]);
+    }
+
 }
