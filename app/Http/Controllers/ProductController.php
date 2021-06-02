@@ -12,7 +12,7 @@ class ProductController extends BaseAPIController
 {
     public function index()
     {
-        $Products = Product::with(['colors','sizes'])->get();
+        $Products = Product::all();
         return $this->sendResponse(ProductResource::collection($Products));
     }
 }

@@ -20,8 +20,8 @@ class Product extends JsonResource
           'id' => $this->id,
           'name' => $this->name,
           'price' => 'R$ '.number_format($this->price, 2, ',', '.'),
-          'colors' => ColorResource::collection($this->colors),
-          'sizes' => SizeResource::collection($this->sizes)
+          'color' => $this->color,
+          'size' => $this->size
         ];
     }
 }

@@ -17,6 +17,8 @@ class Products extends Migration
             $table->engine = 'MyISAM';
             $table->tinyIncrements('id');
             $table->string('name',45);
+            $table->string('color',15);
+            $table->string('size',15);
             $table->decimal('price', 4, 2);
         });
     }
