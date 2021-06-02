@@ -55,4 +55,28 @@ class OrderController extends BaseAPIController
             return $this->sendError("create error", ['meta' => $e->getMessage()], Response::HTTP_ERROR);
         }
     }
+
+
+    public function update(OrderRequest $request)
+    {
+        try{
+            $id = $request->route('id');
+            Order::find($id)->update($request->validated());
+            return $this->sendResponse("Successfully updated");
+        }catch(Exception $e){
+            return $this->sendError("update error", ['meta' => $e->getMessage()], Response::HTTP_ERROR);
+        }
+    }
+
+    public function delete( $id )
+    {
+        try{
+            $Order = Order::findOrFail($id);
+            $Order->delete();
+            return $this->sendResponse('Successfully deleted');
+        }catch(ModelNotFoundException $e){
+            return $this->sendError("delete error", ['meta' => $e->getMessage()]);
+
+        }
+    }
 }

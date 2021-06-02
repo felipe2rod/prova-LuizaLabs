@@ -79,4 +79,34 @@ class OrderTest extends TestCase
                 'data' => 'Successfully created'
         ]);
     }
+
+    public function test_delete_sucess()
+    {
+        $Client = Client::factory()->create();
+
+        $Order = Order::factory()->for($Client)->create();
+
+        $response = $this->delete("/api/pedidos/{$Order->id}");
+        $response
+            ->assertStatus(JsonResponse::HTTP_CREATED)
+            ->assertJson([
+                'success' => true,
+                'data' => 'Successfully deleted'
+        ]);
+    }
+
+    public function test_delete_error()
+    {
+
+        $response = $this->delete('/api/pedidos/000');
+        $response
+            ->assertStatus(JsonResponse::HTTP_NOT_FOUND)
+            ->assertJson([
+                'success' => false,
+                "message"=> "delete error",
+                'data' => [
+                    "meta"=> "No query results for model [App\\Models\\Order] 000"
+                ]
+        ]);
+    }
 }

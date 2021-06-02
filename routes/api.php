@@ -33,3 +33,5 @@ Route::delete('produtos/{id}', [ProductController::class, 'delete']);
 Route::get('pedidos', [OrderController::class, 'index']);
 Route::post('pedidos', [OrderController::class, 'create']);
 Route::get('pedidos/{id}', [OrderController::class, 'show']);
+Route::put('pedidos/{id}', [OrderController::class, 'update']);
+Route::delete('pedidos/{id}', [OrderController::class, 'delete']);

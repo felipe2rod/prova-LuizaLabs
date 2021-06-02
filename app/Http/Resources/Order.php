@@ -16,7 +16,7 @@ class Order extends JsonResource
      */
     public function toArray($request)
     {
-        $pay_methods = ['check' => 'cheque', 'credit_cart' => 'Cartão de Crédito', 'money' => 'Dinheiro'];
+        $pay_methods = ['check' => 'cheque', 'credit_card' => 'Cartão de Crédito', 'money' => 'Dinheiro'];
         return [
           'id' => $this->id,
           'order_date' => strftime('%A, %d de %B de %Y', strtotime($this->order_date)),
