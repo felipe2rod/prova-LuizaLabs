@@ -52,7 +52,6 @@ class ClientRequest extends BaseAPIFormRequest
             'email.string' => "O campo email deve ser uma string",
             'email.unique' => "O email informado ja foi cadastrado",
 
-
             'sex.required' => "O campo sexo é obrigatório",
             'sex.in' => "O sexo informado é invalido",
         ];
