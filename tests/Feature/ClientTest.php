@@ -35,7 +35,7 @@ class ClientTest extends TestCase
 
     }
 
-    public function test_post__success()
+    public function test_post_success()
     {
         $clientData = [
             'name' => 'Felipe Rodrigues Fernandes',
