@@ -24,7 +24,7 @@ class OrderFactory extends Factory
         return [
            'order_date' => $this->faker->date(),
            'observation' => $this->faker->text(),
-           'pay_method' => $this->faker->randomElement(['money','credit_cart','check']),
+           'pay_method' => $this->faker->randomElement(['money','credit_card','check']),
         ];
     }
 }

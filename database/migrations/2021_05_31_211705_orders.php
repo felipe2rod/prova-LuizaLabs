@@ -18,7 +18,7 @@ class Orders extends Migration
             $table->id('id');
             $table->date('order_date');
             $table->string('observation',255);
-            $table->enum('pay_method',['money','credit_cart','check']);
+            $table->enum('pay_method',['money','credit_card','check']);
             $table->integer('client_id');
         });
 
