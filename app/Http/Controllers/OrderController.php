@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -38,11 +38,11 @@ class OrderController extends BaseAPIController
             $Order->observation = $data['observation'];
             $Order->pay_method = $data['pay_method'];
             $Order->client_id = $data['client_id'];
-            $order->save();
+            $Order->save();
 
             foreach($data['items'] as $item){
                 $OrderItem = new OrderItem();
-                $OrderItem->order_id = $order->id;
+                $OrderItem->order_id = $Order->id;
                 $OrderItem->quantity = $item['quantity'];
                 $OrderItem->product_id = $item['product_id'];
                 $OrderItem->save();

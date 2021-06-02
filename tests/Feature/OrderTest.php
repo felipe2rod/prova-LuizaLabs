@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\JsonResponse;
 use Tests\TestCase;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Client;
 
 class OrderTest extends TestCase
@@ -36,7 +37,7 @@ class OrderTest extends TestCase
 
     }
 
-    public function test_show_client(){
+    public function test_show_order(){
 
         $Client = Client::factory()->create();
 
@@ -46,5 +47,36 @@ class OrderTest extends TestCase
 
         $response
             ->assertStatus(JsonResponse::HTTP_CREATED);
+    }
+
+    public function test_post_success()
+    {
+        $Client = Client::factory()->create();
+        $Product = Product::factory()->create();
+
+        $orderData = [
+            'order_date' => date('Y-m-d'),
+            'observation'=> "lorem ipsum",
+            'pay_method' => 'credit_card',
+            'client_id' => $Client->id,
+            'items' => [
+                [
+                    'quantity' => 1,
+                    'product_id' => $Product->id
+                ],
+                [
+                    'quantity' => 4,
+                    'product_id' => $Product->id
+                ]
+            ]
+        ];
+
+         $response = $this->post('/api/pedidos',$orderData);
+         $response
+            ->assertStatus(JsonResponse::HTTP_CREATED)
+            ->assertJson([
+                'success' => true,
+                'data' => 'Successfully created'
+        ]);
     }
 }

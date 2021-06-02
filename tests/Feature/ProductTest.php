@@ -34,8 +34,8 @@ class ProductTest extends TestCase
                         'id',
                         'name',
                         'price',
-                        'colors' => '*',
-                        'sizes' => '*'
+                        'color',
+                        'size'
                     ]
                 ]
             ]);
