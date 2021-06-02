@@ -11,7 +11,7 @@ services:
       - app-network
     volumes:
       - .:/usr/share/nginx
-    command: sh -c "/usr/local/bin/dockerrun.sh"
+    command: sh -c "/usr/local/bin/wait-for-it.sh mysql-app:3306 -t 0 && /usr/local/bin/dockerrun.sh"
 
   mysql-app:
     image: mysql:latest
