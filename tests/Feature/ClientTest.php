@@ -16,7 +16,7 @@ class ClientTest extends TestCase
     {
         $Client = Client::factory()->create();
 
-        $response = $this->get('/api/clients');
+        $response = $this->get('/api/clientes');
 
         $response
             ->assertStatus(JsonResponse::HTTP_CREATED)
@@ -44,7 +44,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_CREATED)
             ->assertJson([
@@ -62,7 +62,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -83,7 +83,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -104,7 +104,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -125,7 +125,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -146,7 +146,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -167,7 +167,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -188,7 +188,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -212,7 +212,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -233,7 +233,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -254,7 +254,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -275,7 +275,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -300,7 +300,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -321,7 +321,7 @@ class ClientTest extends TestCase
             'sex' => null
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -342,7 +342,7 @@ class ClientTest extends TestCase
             'sex' => 'invalid'
         ];
 
-         $response = $this->post('/api/clients',$clientData);
+         $response = $this->post('/api/clientes',$clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -358,7 +358,7 @@ class ClientTest extends TestCase
 
         $Client = Client::factory()->create();
 
-        $response = $this->get("/api/clients/{$Client->id}");
+        $response = $this->get("/api/clientes/{$Client->id}");
 
         $response
             ->assertStatus(JsonResponse::HTTP_CREATED)
@@ -375,7 +375,7 @@ class ClientTest extends TestCase
     }
 
     public function test_invalid_show_client(){
-        $response = $this->get("/api/clients/000");
+        $response = $this->get("/api/clientes/000");
 
         $response
             ->assertStatus(JsonResponse::HTTP_NOT_FOUND)
@@ -400,7 +400,7 @@ class ClientTest extends TestCase
             'sex' => 'female'
         ];
 
-        $response = $this->put("/api/clients/{$Client->id}", $clientData);
+        $response = $this->put("/api/clientes/{$Client->id}", $clientData);
         $response
             ->assertStatus(JsonResponse::HTTP_CREATED)
             ->assertJson([
@@ -409,7 +409,7 @@ class ClientTest extends TestCase
         ]);
 
         $clientData['sex'] = $clientData['sex'] ==  'male' ? 'Masculino': 'Feminino';
-        $response = $this->get("/api/clients/{$Client->id}");
+        $response = $this->get("/api/clientes/{$Client->id}");
         $response
             ->assertStatus(JsonResponse::HTTP_CREATED)
             ->assertJson([
@@ -426,7 +426,7 @@ class ClientTest extends TestCase
             'name' => null,
         ];
 
-         $response = $this->put('/api/clients/{$Client->id}', $clientData);
+         $response = $this->put('/api/clientes/{$Client->id}', $clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -445,7 +445,7 @@ class ClientTest extends TestCase
             'name' => 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
         ];
 
-         $response = $this->put('/api/clients/{$Client->id}', $clientData);
+         $response = $this->put('/api/clientes/{$Client->id}', $clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -465,7 +465,7 @@ class ClientTest extends TestCase
             'cpf' => 11111111111111,
         ];
 
-        $response = $this->put('/api/clients/{$Client->id}', $clientData);
+        $response = $this->put('/api/clientes/{$Client->id}', $clientData);
         $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -485,7 +485,7 @@ class ClientTest extends TestCase
             'cpf' => '111111111111111',
         ];
 
-         $response = $this->put('/api/clients/{$Client->id}', $clientData);
+         $response = $this->put('/api/clientes/{$Client->id}', $clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -505,7 +505,7 @@ class ClientTest extends TestCase
             'cpf' => '1',
         ];
 
-        $response = $this->put('/api/clients/{$Client->id}', $clientData);
+        $response = $this->put('/api/clientes/{$Client->id}', $clientData);
         $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -530,7 +530,7 @@ class ClientTest extends TestCase
             'sex' => 'male'
         ];
 
-         $response = $this->put('/api/clients/{$Client->id}', $clientData);
+         $response = $this->put('/api/clientes/{$Client->id}', $clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -550,7 +550,7 @@ class ClientTest extends TestCase
             'email' => 1111,
         ];
 
-         $response = $this->put('/api/clients/{$Client->id}', $clientData);
+         $response = $this->put('/api/clientes/{$Client->id}', $clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -570,7 +570,7 @@ class ClientTest extends TestCase
             'email' => 'felipe1roaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaad@gmail.com',
         ];
 
-         $response = $this->put('/api/clients/{$Client->id}', $clientData);
+         $response = $this->put('/api/clientes/{$Client->id}', $clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -593,7 +593,7 @@ class ClientTest extends TestCase
             'email' => $Client2->email,
         ];
 
-         $response = $this->put('/api/clients/{$Client->id}', $clientData);
+         $response = $this->put('/api/clientes/{$Client->id}', $clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -612,7 +612,7 @@ class ClientTest extends TestCase
             'sex' => 'invalid'
         ];
 
-         $response = $this->put('/api/clients/{$Client->id}', $clientData);
+         $response = $this->put('/api/clientes/{$Client->id}', $clientData);
          $response
             ->assertStatus(JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJson([
@@ -628,7 +628,7 @@ class ClientTest extends TestCase
     {
         $Client = Client::factory()->create();
 
-        $response = $this->delete("/api/clients/{$Client->id}");
+        $response = $this->delete("/api/clientes/{$Client->id}");
         $response
             ->assertStatus(JsonResponse::HTTP_CREATED)
             ->assertJson([
@@ -640,7 +640,7 @@ class ClientTest extends TestCase
     public function test_delete_error()
     {
 
-        $response = $this->delete('/api/clients/000');
+        $response = $this->delete('/api/clientes/000');
         $response
             ->assertStatus(JsonResponse::HTTP_NOT_FOUND)
             ->assertJson([
