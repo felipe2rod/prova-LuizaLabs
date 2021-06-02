@@ -15,7 +15,7 @@ class Products extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-            $table->tinyIncrements('id');
+            $table->id('id');
             $table->string('name',45);
             $table->string('color',15);
             $table->string('size',15);

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +29,5 @@ Route::get('produtos/{id}', [ProductController::class, 'show']);
 Route::post('produtos', [ProductController::class, 'create']);
 Route::put('produtos/{id}', [ProductController::class, 'update']);
 Route::delete('produtos/{id}', [ProductController::class, 'delete']);
+
+Route::get('pedidos', [OrderController::class, 'index']);

@@ -15,11 +15,11 @@ class Orders extends Migration
     {
          Schema::create('orders', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-            $table->tinyIncrements('id');
+            $table->id('id');
             $table->date('order_date');
             $table->string('observation',255);
             $table->enum('pay_method',['money','credit_cart','check']);
-            $table->tinyInteger('client_id');
+            $table->integer('client_id');
         });
 
         Schema::table('orders', function (Blueprint $table) {

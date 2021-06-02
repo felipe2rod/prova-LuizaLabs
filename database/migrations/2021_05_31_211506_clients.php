@@ -16,7 +16,7 @@ class Clients extends Migration
         Schema::create('clients', function (Blueprint $table) {
 
             $table->engine = 'MyISAM';
-            $table->tinyIncrements('id');
+            $table->id('id');
             $table->string('name',45);
             $table->string('email',45)->unique();
             $table->string('cpf',14)->unique();

@@ -15,10 +15,10 @@ class OrderItens extends Migration
     {
         Schema::create('order_itens', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-            $table->tinyIncrements('id');
-            $table->tinyInteger('quantity');
-            $table->tinyInteger('order_id');
-            $table->tinyInteger('product_id');
+            $table->id('id');
+            $table->integer('quantity');
+            $table->integer('order_id');
+            $table->integer('product_id');
         });
 
         Schema::table('order_itens', function (Blueprint $table) {
