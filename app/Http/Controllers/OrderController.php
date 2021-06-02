@@ -9,6 +9,8 @@ use App\Models\OrderItem;
 use App\Http\Controllers\BaseAPIController as BaseAPIController;
 use App\Http\Resources\Order as OrderResource;
 use App\Http\Requests\OrderRequest;
+use App\Mail\OrderMail;
+use Mail;
 
 class OrderController extends BaseAPIController
 {
@@ -78,5 +80,25 @@ class OrderController extends BaseAPIController
             return $this->sendError("delete error", ['meta' => $e->getMessage()]);
 
         }
+    }
+
+    public function mail( $id )
+    {
+        try{
+            $Order = Order::with(['client','orderItem'])->with('orderItem.product')->findOrFail($id);
+            //$resource = new OrderResource($Order);
+            $data = $Order->toArray();
+            /*
+            $total_values = array_sum(array_map(function($item) { 
+                    return $item['quantity']*$item['decimal_total_price']; 
+            }, $data->items));
+            */
+
+            Mail::to('felipe2rod@gmail.com')->send(new OrderMail($data));
+            return $this->sendResponse($data);
+        }catch(ModelNotFoundException $e){
+            return $this->sendError("mail error", ['meta' => $e->getMessage()]);
+        }
+        
     }
 }

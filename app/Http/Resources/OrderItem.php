@@ -20,7 +20,9 @@ class OrderItem extends JsonResource
           'product_name' => $this->product->name,
           'product_size' => $this->product->size,
           'product_color' => $this->product->color,
-          'product_price' => 'R$ '.number_format($this->product->price, 2, ',', '.')
+          'product_price' => 'R$ '.number_format($this->product->price, 2, ',', '.'),
+          'product_total_price' => 'R$ '.number_format(($this->product->price * $this->quantity), 2, ',', '.'),
+          'decimal_total_price' => ($this->product->price * $this->quantity)
         ];
     }
 }
