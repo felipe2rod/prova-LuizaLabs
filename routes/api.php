@@ -37,3 +37,4 @@ Route::put('pedidos/{id}', [OrderController::class, 'update']);
 Route::delete('pedidos/{id}', [OrderController::class, 'delete']);
 
 Route::post('pedidos/{id}/sendmail', [OrderController::class, 'mail']);
+Route::post('pedidos/{id}/report', [OrderController::class, 'report']);

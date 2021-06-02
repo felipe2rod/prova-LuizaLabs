@@ -11,6 +11,7 @@ use App\Http\Resources\Order as OrderResource;
 use App\Http\Requests\OrderRequest;
 use App\Mail\OrderMail;
 use Mail;
+use PDF;
 
 class OrderController extends BaseAPIController
 {
@@ -86,19 +87,38 @@ class OrderController extends BaseAPIController
     {
         try{
             $Order = Order::with(['client','orderItem'])->with('orderItem.product')->findOrFail($id);
-            //$resource = new OrderResource($Order);
             $data = $Order->toArray();
-            /*
-            $total_values = array_sum(array_map(function($item) { 
-                    return $item['quantity']*$item['decimal_total_price']; 
-            }, $data->items));
-            */
-
-            Mail::to('felipe2rod@gmail.com')->send(new OrderMail($data));
+            Mail::to($data['client']['email'])->send(new OrderMail($data));
             return $this->sendResponse($data);
         }catch(ModelNotFoundException $e){
             return $this->sendError("mail error", ['meta' => $e->getMessage()]);
         }
         
+    }
+
+
+    public function report( $id )
+    {
+        try{
+            $Order = Order::with(['client','orderItem'])->with('orderItem.product')->findOrFail($id);
+            $data = $Order->toArray();
+            //view()->share('employee',$data);
+            $pdf = PDF::loadView('pdf_view', [
+                        'date' => $data['order_date'],
+                        'observation' => $data['order_date'],
+                        'pay_method' => $data['pay_method'],
+                        'name' => $data['client']['name'],
+                        'sex' => $data['client']['sex'],
+                        'cpf' => $data['client']['cpf'],
+                        'email' => $data['client']['email'],
+                        'itens' => $data['order_item'],
+                        'total_value' => array_sum(array_map(function($item) { 
+                            return $item['quantity']*$item['product']['price']; 
+                        }, $data['order_item']))
+            ]);
+            return $pdf->download('report.pdf');
+        }catch(ModelNotFoundException $e){
+            return $this->sendError("mail error", ['meta' => $e->getMessage()]);
+        }
     }
 }
