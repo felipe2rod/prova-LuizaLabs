@@ -14,4 +14,14 @@ class OrderController extends BaseAPIController
         $Orders = Order::with(['client','orderItem'])->with('orderItem.product')->get();
         return $this->sendResponse(OrderResource::collection($Orders));
     }
+
+    public function show( $id )
+    {
+        try{
+            $Order = Order::with(['client','orderItem'])->with('orderItem.product')->findOrFail($id);
+            return $this->sendResponse(new OrderResource($Order));
+        }catch(ModelNotFoundException $e){
+            return $this->sendError("get error", ['meta' => $e->getMessage()]);
+        }
+    }
 }
