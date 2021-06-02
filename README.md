@@ -1,6 +1,6 @@
 # Luiza Labs - Prova Backend
 Esta é a submissão da avaliação da Luiza Labs para a função de desenvolvedor fullstack. O desafio consiste em implementar uma API que proverá o serviço de backend básico para um sistema de pedidos em um e-commerce.
-Dentre os requisitos exigidos, no que se trata ao envio do email, usei uma conta no SendGrid e o mesmo exige uma API Key. Fazendo uso de boas praticas de segurança, a API Key foi enviada via mensagem para o LinkedIn da recrutadora Lorena Cunha. Logo, basta selecionar a Key e colocá-la no lugar da string `SENDGRID_KEY`, que se encontra no arquivo `.env.example`.
+Dentre os requisitos exigidos, no que se trata ao envio do email, usei uma conta no SendGrid e o mesmo exige uma API Key. Fazendo uso de boas praticas de segurança, a API Key foi enviada via e-mail. Logo, basta selecionar a Key e colocá-la no lugar da string `SENDGRID_KEY`, que se encontra no arquivo `.env.example`.
 
 Outro requisitos da prova era a exportação do pdf ser via POST. Nesse aspecto, tomei a liberdade de transformar em GET, pois faz mais sentido semântico e facilita o teste.
 
